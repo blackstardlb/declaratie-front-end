@@ -30,11 +30,18 @@ export class OverviewStatusIndicatorComponent implements OnInit {
       this.color2 = "green"
       this.color3 = "yellow"
       this.message = "Waiting on an India response"
+      break;
       case "3":
       this.color1 = "green"
       this.color2 = "green"
       this.color3 = "green"
       this.message = "Finished."
+      break;
+      default:
+      this.color1 = ""
+      this.color2 = ""
+      this.color3 = ""
+      this.message = "None"
     }
   }
 

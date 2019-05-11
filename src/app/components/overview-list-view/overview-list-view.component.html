@@ -31,7 +31,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
         <td mat-cell *matCellDef="let element">
           <!-- {{element.status}} -->
-          <app-overview-status-indicator state="1"></app-overview-status-indicator>
+          <app-overview-status-indicator state={{element.status}}></app-overview-status-indicator>
         </td>
       </ng-container>
 
