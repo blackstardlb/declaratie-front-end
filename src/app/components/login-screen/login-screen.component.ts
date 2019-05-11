@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login-screen',
@@ -11,11 +12,16 @@ export class LoginScreenComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  // TODO: AuthService
-  constructor(private form: FormBuilder, private router: Router) {
+  constructor(private form: FormBuilder, private router: Router, private authService: AuthenticationService) {
     this.loginForm = this.form.group({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
+    });
+
+    this.authService.user.subscribe(user => {
+      if (user != null) {
+        this.router.navigateByUrl('home');
+      }
     });
   }
 
@@ -24,12 +30,9 @@ export class LoginScreenComponent implements OnInit {
 
   submit() {
     if (this.loginForm.valid) {
-      alert(this.loginForm.value.username);
-      // this.loginForm.reset();
+      const value = this.loginForm.value;
+      this.authService.signIn(value.username, value.password);
     }
-
-    // TODO
-    // this.router.navigateByUrl('overview');
   }
 
 }
