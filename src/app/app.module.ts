@@ -11,6 +11,7 @@ import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {ApolloLink, FetchResult} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
+import { OverviewListViewComponent } from './components/overview-list-view/overview-list-view.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
@@ -24,6 +25,7 @@ import {Observable} from 'zen-observable-ts';
   declarations: [
     AppComponent,
     LoginScreenComponent,
+    OverviewListViewComponent,
     HomeComponent,
     NoPermissionsComponent
   ],
