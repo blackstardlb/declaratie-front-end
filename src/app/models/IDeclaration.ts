@@ -6,6 +6,7 @@ export interface IDeclaration {
   description: string;
   date: string;
   amount: number;
+  currency: string;
   status: StatusEnum;
   category: any;
   files: any;

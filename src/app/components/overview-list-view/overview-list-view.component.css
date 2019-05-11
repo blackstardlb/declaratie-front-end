@@ -1,5 +1,6 @@
 .declarationTable{
   padding-top: 50px;
+  margin: 0 15px;
 }
 
 mat-chip {
