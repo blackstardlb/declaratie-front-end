@@ -11,7 +11,7 @@ import {NoPermissionsComponent} from './components/no-permissions/no-permissions
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthenticatedGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard]},
-  {path: 'no-permissions', component: NoPermissionsComponent},
+  {path: 'no-permissions', component: NoPermissionsComponent, canActivate: [AuthenticatedGuard]},
   {path: 'india-guy-only', component: HomeComponent, canActivate: [IndiaGuyGuard]},
   {path: 'login', component: LoginScreenComponent, canActivate: [NotAuthenticatedGuard]},
 ];
