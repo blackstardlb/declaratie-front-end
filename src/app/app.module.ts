@@ -19,6 +19,8 @@ import {environment} from '../environments/environment';
 import { CreateComponent } from './components/create/create.component';
 import {HomeComponent} from './components/home/home.component';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
+import { DetailViewComponent } from './components/detail-view/detail-view.component';
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 import {AuthenticationService} from '../services/authentication/authentication.service';
 import {Observable} from 'zen-observable-ts';
 import { OverviewStatusIndicatorComponent } from './components/overview-status-indicator/overview-status-indicator.component';
@@ -32,6 +34,8 @@ import { OverviewStatusIndicatorComponent } from './components/overview-status-i
     OverviewListViewComponent,
     HomeComponent,
     NoPermissionsComponent,
+    DetailViewComponent,
+    ConfirmationDialogComponent
     OverviewStatusIndicatorComponent
   ],
   imports: [
@@ -56,6 +60,7 @@ import { OverviewStatusIndicatorComponent } from './components/overview-status-i
       useValue: environment.apiUrl
     }
   ],
+  entryComponents: [ DetailViewComponent, ConfirmationDialogComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

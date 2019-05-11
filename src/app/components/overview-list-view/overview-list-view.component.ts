@@ -30,7 +30,7 @@ export class OverviewListViewComponent implements OnInit {
   }
 
   openDeclaration(selected: IDeclaration) {
-    this.router.navigate(['/view', { id: selected.id }]);
+    this.router.navigate(['/view', selected.id ]);
   }
 
   ngOnInit() {
