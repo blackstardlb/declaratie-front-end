@@ -11,6 +11,7 @@ import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {ApolloLink} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpClientModule} from '@angular/common/http';
+import { OverviewListViewComponent } from './components/overview-list-view/overview-list-view.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
@@ -23,6 +24,7 @@ import {NoPermissionsComponent} from './components/no-permissions/no-permissions
   declarations: [
     AppComponent,
     LoginScreenComponent,
+    OverviewListViewComponent,
     HomeComponent,
     NoPermissionsComponent
   ],
