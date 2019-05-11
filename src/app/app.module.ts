@@ -14,7 +14,7 @@ import { OverviewListViewComponent } from './components/overview-list-view/overv
   declarations: [
     AppComponent,
     LoginScreenComponent,
-    OverviewListViewComponent
+    OverviewListViewComponent,
   ],
   imports: [
     BrowserModule,
