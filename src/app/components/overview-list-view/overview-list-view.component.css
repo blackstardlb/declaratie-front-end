@@ -1,0 +1,24 @@
+.declarationTable{
+  padding-top: 50px;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.createDiv{
+  padding-bottom: 50px;
+}
+
+.createbutton:hover{
+  background-color: rgba(126, 63, 242, 0.91);
+  color:white;
+}
+
+.mat-row:hover {
+  background-color: #f5f5f5;
+}

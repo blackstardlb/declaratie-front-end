@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import { OverviewListViewComponent } from './components/overview-list-view/overview-list-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginScreenComponent
+    LoginScreenComponent,
+    OverviewListViewComponent
   ],
   imports: [
     BrowserModule,
