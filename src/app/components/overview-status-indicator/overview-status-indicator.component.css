@@ -1,0 +1,38 @@
+.status {
+  padding-top: 15px;
+  height: 68px;
+  position: relative;
+}
+
+.status p {
+  line-height: 19px;
+}
+
+.status > .bottom {
+  position: absolute;
+  bottom: 0px;
+}
+
+.bottom > div {
+  margin-left: 10px;
+}
+
+.bottom > div:first-child {
+  margin-left: 0;
+}
+
+.line {
+  width: 20px;
+  height: 4px;
+  background-color: #C0CCDA;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.green {
+  background-color: #2CCA73;
+}
+
+.yellow {
+  background-color: #FFC211;
+}

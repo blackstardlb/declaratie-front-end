@@ -9,8 +9,12 @@ import {IndiaGuyGuard} from '../guards/india_guy/india-guy.guard';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
 import {EmployeeGuard} from '../guards/employee/employee.guard';
 import {DetailViewComponent} from './components/detail-view/detail-view.component';
+import {CreateComponent} from './components/create/create.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginScreenComponent},
+  {path: 'create', component: CreateComponent, canActivate: [AuthenticatedGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthenticatedGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard]},
   {path: 'no-permissions', component: NoPermissionsComponent, canActivate: [AuthenticatedGuard]},
@@ -20,7 +24,6 @@ const routes: Routes = [
   { path: 'view/:id', component: DetailViewComponent, canActivate: [AuthenticatedGuard, EmployeeGuard]},
 ];
 
-// noinspection AngularInvalidImportedOrDeclaredSymbol
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   declarations: [],
