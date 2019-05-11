@@ -7,7 +7,6 @@ import {AuthenticationService} from '../../../services/authentication/authentica
 import {Role} from '../../../models/role/role.enum';
 import {User} from '../../../models/user/user.model';
 import {ConfirmationDialogComponent} from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
-import {of} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {IMessageDialog} from '../../models/IMessageDialog';
 
@@ -59,10 +58,10 @@ export class DetailViewComponent implements OnInit {
       this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.APPROVED : StatusEnum.REJECTED;
     }
 
-    // TODO onchange save the update and do some succes and error notification
+    // TODO onchange save the update and do some succes and error notification!
     // this.declarationService.updateDeclaration(this.declaration).subsribe
 
-    // TODO return to list after goedkeuren
+    // TODO return to list after update!
     // this.backToList();
   }
 
