@@ -11,16 +11,19 @@ import {Role} from '../../models/role/role.enum';
 })
 export class AuthenticationService {
   public user: Observable<User>;
+  public currentUser: User;
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.user = this.afAuth.authState.pipe(switchMap(user => {
       if (user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges().pipe(map(mappedUser => {
+          mappedUser.id = user.uid;
           mappedUser.emailAddress = user.email;
           mappedUser.role = Role[mappedUser.role.toString()];
-          return mappedUser;
+          return (this.currentUser = mappedUser);
         }));
       } else {
+        this.currentUser = null;
         return of(null);
       }
     }));
@@ -28,6 +31,13 @@ export class AuthenticationService {
 
   public signIn(email: string, password: string): Observable<firebase.auth.UserCredential> {
     return from(this.afAuth.auth.signInWithEmailAndPassword(email, password));
+  }
+
+  public getToken() {
+    if (!this.afAuth.auth.currentUser) {
+      return Promise.resolve(null);
+    }
+    return this.afAuth.auth.currentUser.getIdToken();
   }
 
   public signOut() {
