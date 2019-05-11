@@ -18,6 +18,8 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {HomeComponent} from './components/home/home.component';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
+import { DetailViewComponent } from './components/detail-view/detail-view.component';
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 
 // noinspection AngularInvalidImportedOrDeclaredSymbol
 @NgModule({
@@ -26,7 +28,9 @@ import {NoPermissionsComponent} from './components/no-permissions/no-permissions
     LoginScreenComponent,
     OverviewListViewComponent,
     HomeComponent,
-    NoPermissionsComponent
+    NoPermissionsComponent,
+    DetailViewComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,7 @@ import {NoPermissionsComponent} from './components/no-permissions/no-permissions
       useValue: environment.apiUrl
     }
   ],
+  entryComponents: [ DetailViewComponent, ConfirmationDialogComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

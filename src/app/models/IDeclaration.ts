@@ -10,4 +10,5 @@ export interface IDeclaration {
   category: any;
   files: any;
   empId: number;
+  bankNum: string;
 }

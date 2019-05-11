@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: center;
+  /*margin: 100px 0px;*/
+}
+
+.titleDiv {
+  padding-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+.detailDiv {
+  width: 50%;
+  justify-content: center;
+}
