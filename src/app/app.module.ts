@@ -13,11 +13,13 @@ import {ApolloLink} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {environment} from '../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
+import { CreateComponent } from './components/create/create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginScreenComponent
+    LoginScreenComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
