@@ -20,6 +20,7 @@ import {HomeComponent} from './components/home/home.component';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
 import {AuthenticationService} from '../services/authentication/authentication.service';
 import {Observable} from 'zen-observable-ts';
+import { OverviewStatusIndicatorComponent } from './components/overview-status-indicator/overview-status-indicator.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {Observable} from 'zen-observable-ts';
     LoginScreenComponent,
     OverviewListViewComponent,
     HomeComponent,
-    NoPermissionsComponent
+    NoPermissionsComponent,
+    OverviewStatusIndicatorComponent
   ],
   imports: [
     BrowserModule,
