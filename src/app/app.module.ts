@@ -16,6 +16,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import { CreateComponent } from './components/create/create.component';
 import {HomeComponent} from './components/home/home.component';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
 import {AuthenticationService} from '../services/authentication/authentication.service';
@@ -24,6 +25,8 @@ import {Observable} from 'zen-observable-ts';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginScreenComponent,
+    CreateComponent,
     LoginScreenComponent,
     OverviewListViewComponent,
     HomeComponent,
@@ -54,6 +57,7 @@ import {Observable} from 'zen-observable-ts';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
   constructor(
     apollo: Apollo,
     httpLink: HttpLink,
