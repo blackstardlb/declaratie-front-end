@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {IDeclaration} from '../../models/IDeclaration';
 import {DECLARATIONS} from '../../mocks/mock-declarations';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-overview-list-view',
@@ -18,7 +19,7 @@ export class OverviewListViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   // TODO add REST Service
-  constructor() { }
+  constructor(private router: Router) { }
 
   getDeclarations() {
     this.declarationsTable.data = DECLARATIONS;
@@ -29,7 +30,7 @@ export class OverviewListViewComponent implements OnInit {
   }
 
   openDeclaration(selected: IDeclaration) {
-    alert('selected: ' + JSON.stringify(selected));
+    this.router.navigate(['/view', { id: selected.id }]);
   }
 
   ngOnInit() {

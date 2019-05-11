@@ -2,6 +2,10 @@
   padding-top: 50px;
 }
 
+mat-chip {
+  max-width: 50%;
+}
+
 table {
   width: 100%;
 }
@@ -14,8 +18,13 @@ th.mat-sort-header-sorted {
   padding-bottom: 50px;
 }
 
+.createbutton{
+  background-color: #2cca73;
+  color:white;
+}
+
 .createbutton:hover{
-  background-color: rgba(126, 63, 242, 0.91);
+  background-color: #27964b;
   color:white;
 }
 
