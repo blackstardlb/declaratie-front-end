@@ -12,13 +12,13 @@ import {CreateComponent} from './components/create/create.component';
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginScreenComponent},
-  {path: 'create', component: CreateComponent},
+  {path: 'create', component: CreateComponent, canActivate: [AuthenticatedGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthenticatedGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard]},
   {path: 'no-permissions', component: NoPermissionsComponent, canActivate: [AuthenticatedGuard]},
   {path: 'india-guy-only', component: HomeComponent, canActivate: [IndiaGuyGuard]},
   {path: 'login', component: LoginScreenComponent, canActivate: [NotAuthenticatedGuard]},
-  { path: 'overview', component: OverviewListViewComponent}
+  {path: 'overview', component: OverviewListViewComponent}
 ];
 
 @NgModule({
