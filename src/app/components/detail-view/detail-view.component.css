@@ -1,7 +1,5 @@
-:host {
-  display: flex;
-  justify-content: center;
-  /*margin: 100px 0px;*/
+.tableDiv{
+  width: 100%;
 }
 
 .titleDiv {
@@ -14,10 +12,54 @@
 }
 
 .detailDiv {
-  width: 50%;
-  justify-content: center;
+  /*width: 50%;*/
+  /*justify-content: center;*/
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .backButton {
   margin-bottom: 20px;
+}
+
+/deep/ .mat-form-field--no-underline .mat-form-field-underline {
+  background-color: transparent !important;
+}
+
+mat-form-field {
+  /*margin-right: 32px;*/
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+mat-card {
+  width: 100%;
+  margin: 0 auto 16px;
+}
+
+@media screen and (min-width: 576px) {
+  mat-card {
+    width: 90%;
+  }
+
+  mat-form-field {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  mat-card {
+    width: 75%;
+  }
+
+  mat-form-field {
+    width: 33.333333%;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  mat-card {
+    width: 50%;
+  }
 }
