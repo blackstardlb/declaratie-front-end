@@ -24,6 +24,7 @@ import {ConfirmationDialogComponent} from './dialogs/confirmation-dialog/confirm
 import {AuthenticationService} from '../services/authentication/authentication.service';
 import {Observable} from 'zen-observable-ts';
 import {OverviewStatusIndicatorComponent} from './components/overview-status-indicator/overview-status-indicator.component';
+import { StatusUpdateComponent } from './components/status-update/status-update.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {OverviewStatusIndicatorComponent} from './components/overview-status-ind
     NoPermissionsComponent,
     DetailViewComponent,
     ConfirmationDialogComponent,
-    OverviewStatusIndicatorComponent
+    OverviewStatusIndicatorComponent,
+    StatusUpdateComponent
   ],
   imports: [
     BrowserModule,

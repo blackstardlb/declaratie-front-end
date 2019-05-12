@@ -37,6 +37,8 @@
     <input matInput [ngModel]="declaration.files" placeholder="Input" [disabled]="disabled">
   </mat-form-field>
 
+  <app-status-update [statusUpdate]="declaration.statusUpdates"></app-status-update>
+
   <ng-container *ngIf="isManager">
     <mat-form-field>
       <mat-label>Approve</mat-label>

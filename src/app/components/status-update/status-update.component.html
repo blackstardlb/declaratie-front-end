@@ -1,0 +1,28 @@
+<div class="declarationTable">
+  <h1 mat-dialog-title>Status updates</h1>
+  <table mat-table [dataSource]="statusUpdateTable">
+
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef> Comment</th>
+      <td mat-cell *matCellDef="let element"> {{element?.comment}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date</th>
+      <td mat-cell *matCellDef="let element"> {{element?.date | date:'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status</th>
+      <td mat-cell *matCellDef="let element">{{element?.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Employee</th>
+      <td mat-cell *matCellDef="let element"> {{element?.name}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
