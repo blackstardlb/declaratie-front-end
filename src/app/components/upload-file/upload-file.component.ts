@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-upload-file',
@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-file.component.css']
 })
 export class UploadFileComponent implements OnInit {
-
+  @Output() valueChange = new EventEmitter<File[]>();
   uploadedFiles: File[] = [];
   acceptTypes = 'image/jpeg,image/jpg,image/png';
 
-  constructor() { }
+  constructor() {
+  }
 
   openFileBrowser(event: any) {
     event.preventDefault();
@@ -28,6 +29,7 @@ export class UploadFileComponent implements OnInit {
     for (const chosenFile of files) {
       console.log('Selected: ' + chosenFile.name);
       this.uploadedFiles.push(chosenFile);
+      this.valueChange.emit(this.uploadedFiles);
     }
   }
 

@@ -1,72 +1,22 @@
 import {Injectable} from '@angular/core';
-import {Apollo} from 'apollo-angular';
-import gql from 'graphql-tag';
-import {flatMap, map} from 'rxjs/operators';
-import {AuthenticationService} from '../../services/authentication/authentication.service';
-import {IDeclaration} from '../models/IDeclaration';
+import {Guid} from 'guid-typescript';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DeclarationService {
-
-  private readonly getQuery = gql(`query {
-        declarationsForEmployee {
-          id,
-          category {
-            name
-          },
-          status,
-          description,
-          date,
-          amount,
-          currency
-        }
-      }`);
-
-  private readonly getByIdQuery = gql(`query($id: String!) {
-        declaration(id: $id) {
-          id,
-          category {
-            name
-          },
-          user {
-            bankAccount
-          }
-          status,
-          statusUpdates {
-            date,
-            comment,
-            status,
-            user {
-              name
-            }
-          },
-          description,
-          date,
-          amount,
-          chargeCustomer,
-          inForeignCountry,
-          currency
-        }
-      }`);
-
-  constructor(
-    private readonly apollo: Apollo,
-    private authService: AuthenticationService
-  ) {
+export class FileUploadService {
+  constructor() {
   }
 
-  public getEmployeeDeclarations() {
-    return this.apollo.watchQuery({
-      query: this.getQuery,
-    }).valueChanges.pipe(map(({data}) => (data as any).declarationsForEmployee as IDeclaration[]));
-  }
+  public uploadFiles(files: File[]): Promise<string[]> {
+    const task = files.map(async file => {
+      const filename = Guid.create().toString() + file.name.substr(file.name.lastIndexOf('.') - 1);
+      const ref = firebase.storage().ref().child(filename);
+      await ref.put(file);
+      return ref.getDownloadURL();
+    });
 
-  public getDeclaration(id: string) {
-    return this.apollo.watchQuery({
-      query: this.getByIdQuery,
-      variables: {id},
-    }).valueChanges.pipe(map(({data}) => (data as any).declaration as IDeclaration));
+    return Promise.all(task);
   }
 }

@@ -8,22 +8,18 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class FileViewComponent implements OnInit {
 
+  @Input()
   file: File;
-
-  @Input() set image(selectedImage) { this.file = selectedImage; }
-
   url: any;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.previewImage();
   }
 
   previewImage() {
-    console.log(this.file.name);
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(this.file));
   }
 
   ngOnInit() {
+    this.previewImage();
   }
-
 }

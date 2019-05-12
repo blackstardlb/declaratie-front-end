@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Category} from '../../models/category';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication/authentication.service';
+import {FileUploadService} from '../../services/file-upload.service';
 
 @Component({
   selector: 'app-create',
@@ -11,14 +12,15 @@ import {AuthenticationService} from '../../../services/authentication/authentica
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-
   form: FormGroup;
   categories: Observable<Category[]>;
+  files: File[];
 
   constructor(
     readonly categoryService: CategoryService,
     readonly authService: AuthenticationService,
-    formBuilder: FormBuilder
+    formBuilder: FormBuilder,
+    readonly fileService: FileUploadService,
   ) {
     this.form = formBuilder.group({
       category: new FormControl('', Validators.required),
@@ -64,5 +66,11 @@ export class CreateComponent implements OnInit {
     Object.keys(this.form.controls).forEach(key => {
       localStorage.removeItem('field_' + key);
     });
+  }
+
+  onNewFiles(files: File[]) {
+    this.files = files;
+    console.log(files);
+    this.fileService.uploadFiles(this.files).then(urls => console.log(urls));
   }
 }
