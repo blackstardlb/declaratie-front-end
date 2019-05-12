@@ -11,19 +11,19 @@ import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {ApolloLink, FetchResult} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
-import { OverviewListViewComponent } from './components/overview-list-view/overview-list-view.component';
+import {OverviewListViewComponent} from './components/overview-list-view/overview-list-view.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import { CreateComponent } from './components/create/create.component';
+import {CreateComponent} from './components/create/create.component';
 import {HomeComponent} from './components/home/home.component';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
-import { DetailViewComponent } from './components/detail-view/detail-view.component';
-import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
+import {DetailViewComponent} from './components/detail-view/detail-view.component';
+import {ConfirmationDialogComponent} from './dialogs/confirmation-dialog/confirmation-dialog.component';
 import {AuthenticationService} from '../services/authentication/authentication.service';
 import {Observable} from 'zen-observable-ts';
-import { OverviewStatusIndicatorComponent } from './components/overview-status-indicator/overview-status-indicator.component';
+import {OverviewStatusIndicatorComponent} from './components/overview-status-indicator/overview-status-indicator.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { OverviewStatusIndicatorComponent } from './components/overview-status-i
     HomeComponent,
     NoPermissionsComponent,
     DetailViewComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
     OverviewStatusIndicatorComponent
   ],
   imports: [
@@ -60,7 +60,7 @@ import { OverviewStatusIndicatorComponent } from './components/overview-status-i
       useValue: environment.apiUrl
     }
   ],
-  entryComponents: [ DetailViewComponent, ConfirmationDialogComponent ],
+  entryComponents: [DetailViewComponent, ConfirmationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

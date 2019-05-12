@@ -9,6 +9,7 @@ import {User} from '../../../models/user/user.model';
 import {ConfirmationDialogComponent} from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 import {MatDialog} from '@angular/material';
 import {IMessageDialog} from '../../models/IMessageDialog';
+import {DeclarationService} from '../../services/declaration.service';
 
 @Component({
   selector: 'app-detail-view',
@@ -25,15 +26,13 @@ export class DetailViewComponent implements OnInit {
 
   // TODO REST DeclarationService
   constructor(private dialog: MatDialog, private router: Router, private activateRouter: ActivatedRoute,
-              private auth: AuthenticationService) {
+              private auth: AuthenticationService, private decService: DeclarationService) {
     this.auth.user.subscribe(value => {
       this.isManager = value.role === Role.UNIT_MANAGER || value.role === Role.INDIA_GUY;
       this.user = value;
     });
     const selected = this.activateRouter.snapshot.paramMap.get('id');
-    // TODO Get Call
-    // this.declaration = this.declarationService.getDeclaration(selected).subsc
-    this.declaration = DECLARATIONS[0];
+    this.decService.getDeclaration(selected).subscribe(dec => this.declaration = dec);
   }
 
   onChange(selected: StatusEnum) {
@@ -53,7 +52,7 @@ export class DetailViewComponent implements OnInit {
 
   private updateDeclaration(selected: StatusEnum) {
     if (this.user.role === Role.UNIT_MANAGER) {
-      this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.INPROGRESS : StatusEnum.REJECTED;
+      this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.WAITINGONINDIA : StatusEnum.REJECTED;
     } else {
       this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.APPROVED : StatusEnum.REJECTED;
     }
