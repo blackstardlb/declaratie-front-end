@@ -10,6 +10,7 @@ import {NoPermissionsComponent} from './components/no-permissions/no-permissions
 import {EmployeeGuard} from '../guards/employee/employee.guard';
 import {DetailViewComponent} from './components/detail-view/detail-view.component';
 import {CreateComponent} from './components/create/create.component';
+import {UploadFileComponent} from './components/upload-file/upload-file.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'login', component: LoginScreenComponent, canActivate: [NotAuthenticatedGuard]},
   { path: 'overview', component: OverviewListViewComponent, canActivate: [AuthenticatedGuard, EmployeeGuard]},
   { path: 'view/:id', component: DetailViewComponent, canActivate: [AuthenticatedGuard, EmployeeGuard]},
+  { path: 'uploadfile', component: UploadFileComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,13 @@
+<div class="container">
+  <h4>Choose file</h4>
+
+  <div class="container">
+    <input hidden multiple id="fileId" type="file" accept="{{acceptTypes}}" (change)="onFileSelect($event)">
+    <button class="uploadButton" mat-raised-button (click)="openFileBrowser($event)">
+      <mat-icon matListIcon>cloud_upload</mat-icon>
+      Kies bestand
+    </button>
+  </div>
+
+  <app-file-view *ngFor="let chosenFile of uploadedFiles" [image]="chosenFile"></app-file-view>
+</div>
