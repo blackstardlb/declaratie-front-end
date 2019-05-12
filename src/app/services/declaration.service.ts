@@ -34,6 +34,14 @@ export class DeclarationService {
             bankAccount
           }
           status,
+          statusUpdates {
+            date,
+            comment,
+            status,
+            user {
+              name
+            }
+          },
           description,
           date,
           amount,
