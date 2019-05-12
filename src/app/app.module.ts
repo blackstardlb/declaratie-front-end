@@ -11,7 +11,7 @@ import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {ApolloLink, FetchResult} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
-import {OverviewListViewComponent} from './components/overview-list-view/overview-list-view.component';
+import { OverviewListViewComponent } from './components/overview-list-view/overview-list-view.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
@@ -25,6 +25,21 @@ import {AuthenticationService} from '../services/authentication/authentication.s
 import {Observable} from 'zen-observable-ts';
 import {OverviewStatusIndicatorComponent} from './components/overview-status-indicator/overview-status-indicator.component';
 import { StatusUpdateComponent } from './components/status-update/status-update.component';
+import {ParkingFieldsComponent} from './components/parking-fields/parking-fields.component';
+import {MAT_DATE_LOCALE} from '@angular/material';
+import {NgxCurrencyModule} from 'ngx-currency';
+
+export const customCurrencyMaskConfig = {
+  align: 'right',
+  allowNegative: false,
+  allowZero: false,
+  decimal: '.',
+  precision: 2,
+  prefix: '$ ',
+  suffix: '',
+  thousands: ',',
+  nullable: true
+};
 
 @NgModule({
   declarations: [
@@ -38,7 +53,8 @@ import { StatusUpdateComponent } from './components/status-update/status-update.
     DetailViewComponent,
     ConfirmationDialogComponent,
     OverviewStatusIndicatorComponent,
-    StatusUpdateComponent
+    StatusUpdateComponent,
+    ParkingFieldsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,12 +71,11 @@ import { StatusUpdateComponent } from './components/status-update/status-update.
     HttpLinkModule,
     HttpClientModule,
     ApolloModule,
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
   ],
   providers: [
-    {
-      provide: 'API_URL',
-      useValue: environment.apiUrl
-    }
+    {provide: 'API_URL', useValue: environment.apiUrl},
+    {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'},
   ],
   entryComponents: [DetailViewComponent, ConfirmationDialogComponent],
   bootstrap: [AppComponent]

@@ -10,8 +10,8 @@ import {IDeclaration} from '../models/IDeclaration';
 })
 export class DeclarationService {
 
-  private readonly getQuery = gql(`query($employeeId: String!) {
-        declarationsForEmployee(employeeId: $employeeId) {
+  private readonly getQuery = gql(`query {
+        declarationsForEmployee {
           id,
           category {
             name
@@ -56,12 +56,9 @@ export class DeclarationService {
   }
 
   public getEmployeeDeclarations() {
-    return this.authService.user.pipe(flatMap(user => {
-      return this.apollo.watchQuery({
-        query: this.getQuery,
-        variables: {employeeId: user.id},
-      }).valueChanges.pipe(map(({data}) => (data as any).declarationsForEmployee as IDeclaration[]));
-    }));
+    return this.apollo.watchQuery({
+      query: this.getQuery,
+    }).valueChanges.pipe(map(({data}) => (data as any).declarationsForEmployee as IDeclaration[]));
   }
 
   public getDeclaration(id: string) {

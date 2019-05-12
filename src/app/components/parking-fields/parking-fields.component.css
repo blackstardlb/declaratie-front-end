@@ -1,0 +1,47 @@
+/deep/ .day .mat-form-field-infix {
+  width: 1.8em;
+}
+
+/deep/ .money .mat-form-field-infix {
+  width: 6em;
+}
+
+.mat-form-field {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+form {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.row-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.parking-row {
+  display: flex;
+  align-items: center;
+}
+
+.month, .year {
+  width: 4em;
+}
+
+.title {
+  padding-left: 8px;
+  font-size: 1.1em;
+  margin-bottom: 3px;
+  font-style: italic;
+}
