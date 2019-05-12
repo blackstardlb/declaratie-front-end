@@ -1,0 +1,73 @@
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+/deep/ .mat-form-field--no-underline .mat-form-field-underline {
+  background-color: transparent !important;
+}
+
+mat-form-field {
+  /*margin-right: 32px;*/
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+mat-card {
+  width: 100%;
+  margin: 0 auto 16px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 576px) {
+  mat-card {
+    width: 90%;
+  }
+
+  mat-form-field {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  mat-card {
+    width: 75%;
+  }
+
+  mat-form-field {
+    width: 33.333333%;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  mat-card {
+    width: 50%;
+  }
+}
+
+.attachments {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.upload {
+  background-color: #eee;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 175px;
+  height: 175px;
+}
+
+.upload mat-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+}

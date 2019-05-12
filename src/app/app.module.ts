@@ -11,17 +11,32 @@ import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {ApolloLink, FetchResult} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
-import { OverviewListViewComponent } from './components/overview-list-view/overview-list-view.component';
+import {OverviewListViewComponent} from './components/overview-list-view/overview-list-view.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import { CreateComponent } from './components/create/create.component';
+import {CreateComponent} from './components/create/create.component';
 import {HomeComponent} from './components/home/home.component';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
 import {AuthenticationService} from '../services/authentication/authentication.service';
 import {Observable} from 'zen-observable-ts';
-import { OverviewStatusIndicatorComponent } from './components/overview-status-indicator/overview-status-indicator.component';
+import {OverviewStatusIndicatorComponent} from './components/overview-status-indicator/overview-status-indicator.component';
+import {ParkingFieldsComponent} from './components/parking-fields/parking-fields.component';
+import {MAT_DATE_LOCALE} from '@angular/material';
+import {NgxCurrencyModule} from 'ngx-currency';
+
+export const customCurrencyMaskConfig = {
+  align: 'right',
+  allowNegative: false,
+  allowZero: false,
+  decimal: '.',
+  precision: 2,
+  prefix: '$ ',
+  suffix: '',
+  thousands: ',',
+  nullable: true
+};
 
 @NgModule({
   declarations: [
@@ -32,7 +47,8 @@ import { OverviewStatusIndicatorComponent } from './components/overview-status-i
     OverviewListViewComponent,
     HomeComponent,
     NoPermissionsComponent,
-    OverviewStatusIndicatorComponent
+    OverviewStatusIndicatorComponent,
+    ParkingFieldsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,12 +65,11 @@ import { OverviewStatusIndicatorComponent } from './components/overview-status-i
     HttpLinkModule,
     HttpClientModule,
     ApolloModule,
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
   ],
   providers: [
-    {
-      provide: 'API_URL',
-      useValue: environment.apiUrl
-    }
+    {provide: 'API_URL', useValue: environment.apiUrl},
+    {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'},
   ],
   bootstrap: [AppComponent]
 })

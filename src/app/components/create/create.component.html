@@ -1,4 +1,5 @@
 <mat-card>
+  <mat-card-title>Generieke informatie</mat-card-title>
   <mat-card-content>
     <form [formGroup]="form">
       <mat-form-field>
@@ -9,6 +10,53 @@
         </mat-select>
         <mat-error *ngIf="form.controls?.category?.errors?.required">You must select a category</mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>Bank/girorekening</mat-label>
+        <input matInput formControlName="bank"/>
+        <mat-error *ngIf="form.controls?.bank?.errors?.pattern">Geen geldig rekening nummer</mat-error>
+      </mat-form-field>
+      <mat-form-field floatLabel="always" class="mat-form-field--no-underline">
+        <mat-label>Kosten gemaakt in buitenland?</mat-label>
+        <input matInput placeholder="Input" style="display: none">
+        <mat-radio-group formControlName="abroad">
+          <mat-radio-button value="true">Ja</mat-radio-button>
+          <mat-radio-button value="false">Nee</mat-radio-button>
+        </mat-radio-group>
+      </mat-form-field>
+      <mat-form-field floatLabel="always" class="mat-form-field--no-underline">
+        <mat-label>Doorbelasten klant?</mat-label>
+        <input matInput placeholder="Input" style="display: none">
+        <mat-radio-group formControlName="chargeCustomer">
+          <mat-radio-button value="true">Ja</mat-radio-button>
+          <mat-radio-button value="false">Nee</mat-radio-button>
+        </mat-radio-group>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Motivatie</mat-label>
+        <textarea formControlName="motivation" matInput></textarea>
+        <mat-error *ngIf="form.controls?.motivation?.errors?.required">Je moet een motivatie geven</mat-error>
+      </mat-form-field>
     </form>
+  </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="form.controls?.category?.value === '19'">
+  <mat-card>
+    <mat-card-title>Parkeerdeclaratie informatie</mat-card-title>
+    <mat-card-content>
+      <app-parking-fields>
+      </app-parking-fields>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<mat-card>
+  <mat-card-title>Bijlagen</mat-card-title>
+  <mat-card-content>
+    <div class="attachments">
+      <div class="upload" matRipple>
+        <mat-icon>add</mat-icon>
+      </div>
+    </div>
   </mat-card-content>
 </mat-card>
