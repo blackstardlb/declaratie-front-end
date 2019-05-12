@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {statusName} from "../../models/StatusEnum";
+import {statusName} from '../../models/StatusEnum';
 
 @Component({
   selector: 'app-overview-status-indicator',

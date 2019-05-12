@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Declaration proces</span>
+    <span mat-button *ngIf="isUserAuthenticated|async" class="small">:{{role|async}}</span>
     <span class="example-fill-remaining-space"></span>
     <span class="align-center"></span>
     <span class="example-spacer"></span>
