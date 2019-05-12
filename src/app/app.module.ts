@@ -24,6 +24,7 @@ import {ConfirmationDialogComponent} from './dialogs/confirmation-dialog/confirm
 import {AuthenticationService} from '../services/authentication/authentication.service';
 import {Observable} from 'zen-observable-ts';
 import {OverviewStatusIndicatorComponent} from './components/overview-status-indicator/overview-status-indicator.component';
+import { StatusUpdateComponent } from './components/status-update/status-update.component';
 import {ParkingFieldsComponent} from './components/parking-fields/parking-fields.component';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import {NgxCurrencyModule} from 'ngx-currency';
@@ -52,6 +53,7 @@ export const customCurrencyMaskConfig = {
     DetailViewComponent,
     ConfirmationDialogComponent,
     OverviewStatusIndicatorComponent,
+    StatusUpdateComponent,
     ParkingFieldsComponent
   ],
   imports: [
