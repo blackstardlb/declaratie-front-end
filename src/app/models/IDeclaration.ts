@@ -10,8 +10,8 @@ export interface IDeclaration {
   amount: number;
   currency: string;
   status: StatusEnum;
+  statusUpdates: StatusEnum[];
   category: Category;
   files: any;
-  empId: number;
   user: User;
 }
