@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Category} from '../../models/category';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -16,6 +17,7 @@ export class CreateComponent implements OnInit {
   categories: Observable<Category[]>;
 
   constructor(
+    private router: Router,
     readonly categoryService: CategoryService,
     readonly authService: AuthenticationService,
     formBuilder: FormBuilder
@@ -64,5 +66,9 @@ export class CreateComponent implements OnInit {
     Object.keys(this.form.controls).forEach(key => {
       localStorage.removeItem('field_' + key);
     });
+  }
+
+  backToList() {
+    this.router.navigateByUrl('overview');
   }
 }

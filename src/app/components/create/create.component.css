@@ -1,3 +1,13 @@
+.backButton {
+  padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.createDiv{
+  margin-top: 40px;
+}
+
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
 }

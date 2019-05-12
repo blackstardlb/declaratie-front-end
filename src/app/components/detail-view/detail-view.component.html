@@ -1,5 +1,9 @@
 <div class="example-container detailDiv" *ngIf="declaration">
   <mat-card>
+    <div mat-dialog-actions class="backButton" align="left" (click)="backToList()">
+      <i class="material-icons" align="left">arrow_back</i>
+      <div class="buttonBack">Back</div>
+    </div>
     <mat-card-title>Details</mat-card-title>
     <mat-card-content>
       <table class="tableDiv">
@@ -55,9 +59,9 @@
         </mat-form-field>
       </ng-container>
 
-      <div mat-dialog-actions class="backButton" align="left">
-        <button mat-raised-button align="left" class="createbutton" (click)="backToList()">Back</button>
-      </div>
+<!--      <div mat-dialog-actions class="backButton" align="left">-->
+<!--        <button mat-raised-button align="left" (click)="backToList()">Back</button>-->
+<!--      </div>-->
     </mat-card-content>
   </mat-card>
 </div>
