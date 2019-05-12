@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
-import {flatMap, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
-import {IDeclaration} from '../models/IDeclaration';
+import {DeclarationArgs, IDeclaration} from '../models/IDeclaration';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +49,10 @@ export class DeclarationService {
         }
       }`);
 
+  private readonly createMutation = gql(`mutation($args: DeclarationArgs!) {
+                                                  createDeclaration(args: $args)
+                                               }`);
+
   constructor(
     private readonly apollo: Apollo,
     private authService: AuthenticationService
@@ -66,5 +70,14 @@ export class DeclarationService {
       query: this.getByIdQuery,
       variables: {id},
     }).valueChanges.pipe(map(({data}) => (data as any).declaration as IDeclaration));
+  }
+
+  public createDeclaration(args: DeclarationArgs) {
+    return this.apollo.mutate({
+      mutation: this.createMutation,
+      variables: {
+        args
+      }
+    }).pipe(map(({data}) => (data as any).createDeclaration as string));
   }
 }

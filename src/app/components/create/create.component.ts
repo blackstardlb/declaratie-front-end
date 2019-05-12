@@ -1,9 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CategoryService} from '../../services/category.service';
 import {Observable} from 'rxjs';
 import {Category} from '../../models/category';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication/authentication.service';
+import {ParkingFieldsComponent} from '../parking-fields/parking-fields.component';
+import {DeclarationArgs} from '../../models/IDeclaration';
+import {DeclarationService} from '../../services/declaration.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -14,10 +18,13 @@ export class CreateComponent implements OnInit {
 
   form: FormGroup;
   categories: Observable<Category[]>;
+  @ViewChild('parkingFields') parkingFields: ParkingFieldsComponent;
 
   constructor(
     readonly categoryService: CategoryService,
     readonly authService: AuthenticationService,
+    readonly declarationService: DeclarationService,
+    readonly router: Router,
     formBuilder: FormBuilder
   ) {
     this.form = formBuilder.group({
@@ -64,5 +71,29 @@ export class CreateComponent implements OnInit {
     Object.keys(this.form.controls).forEach(key => {
       localStorage.removeItem('field_' + key);
     });
+  }
+
+  save() {
+    const parkingModel = this.parkingFields.getModel();
+    const declarationModel: DeclarationArgs = {
+      date: new Date(),
+      foreignCountry: this.form.controls.abroad.value === 'true',
+      chargeCustomer: this.form.controls.chargeCustomer.value === 'true',
+      categoryId: parseInt(this.form.controls.category.value, null),
+      description: this.form.controls.motivation.value,
+      currency: '€',
+      amount: parkingModel.rows.map(value => value.amount).reduce((previousValue, currentValue) => previousValue + currentValue),
+      parkingInfo: parkingModel,
+      bankAccount: this.form.controls.bank.value
+    };
+    this.declarationService.createDeclaration(declarationModel).subscribe(value => {
+      this.clearSavedFields();
+      this.parkingFields.removeSavedChanges();
+      this.router.navigateByUrl('/overview');
+    });
+  }
+
+  valid() {
+    return this.form && this.form.valid && this.parkingFields && this.parkingFields.valid();
   }
 }

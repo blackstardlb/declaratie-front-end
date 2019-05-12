@@ -71,3 +71,23 @@ form {
   width: 80px;
   height: 80px;
 }
+
+.submit {
+  margin: 0 auto;
+}
+
+.center-wrapper {
+  display: flex;
+  margin-bottom: 32px;
+  margin-top: 16px;
+}
+
+.center-wrapper button {
+  font-size: 1.5em;
+  padding-top: .3em;
+  padding-bottom: .3em;
+}
+
+.grow {
+  flex-grow: 1;
+}

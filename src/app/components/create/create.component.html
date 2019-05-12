@@ -40,11 +40,11 @@
   </mat-card-content>
 </mat-card>
 
-<ng-container *ngIf="form.controls?.category?.value === '19'">
+<ng-container *ngIf="form.controls?.category?.value === '2'">
   <mat-card>
     <mat-card-title>Parkeerdeclaratie informatie</mat-card-title>
     <mat-card-content>
-      <app-parking-fields>
+      <app-parking-fields #parkingFields>
       </app-parking-fields>
     </mat-card-content>
   </mat-card>
@@ -60,3 +60,9 @@
     </div>
   </mat-card-content>
 </mat-card>
+
+<div class="center-wrapper">
+  <div class="grow"></div>
+  <button (click)="save()" class="submit-button" mat-flat-button color="primary" [disabled]="!valid()">Declaratie versturen</button>
+  <div class="grow"></div>
+</div>

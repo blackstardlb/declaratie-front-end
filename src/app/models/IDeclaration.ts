@@ -14,4 +14,40 @@ export interface IDeclaration {
   category: Category;
   files: any;
   user: User;
+  bankAccount: string;
+}
+
+export interface DeclarationArgs {
+
+  categoryId: number;
+  date: Date;
+  amount: number;
+  foreignCountry: boolean;
+  chargeCustomer: boolean;
+  currency: string;
+  description: string;
+  parkingInfo?: ParkingInfo;
+  hotelInfo?: HotelInfo;
+  bankAccount: string;
+
+}
+
+export interface ParkingInfo {
+
+  month: number;
+  year: number;
+  rows: ParkingInfoRow[];
+
+}
+
+export interface ParkingInfoRow {
+  date: Date;
+  description: string;
+  amount: number;
+}
+
+export interface HotelInfo {
+
+  id: string;
+
 }
