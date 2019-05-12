@@ -77,7 +77,7 @@ export class CreateComponent implements OnInit {
     const parkingModel = this.parkingFields.getModel();
     const declarationModel: DeclarationArgs = {
       date: new Date(),
-      foreignCountry: this.form.controls.abroad.value === 'true',
+      inForeignCountry: this.form.controls.abroad.value === 'true',
       chargeCustomer: this.form.controls.chargeCustomer.value === 'true',
       categoryId: parseInt(this.form.controls.category.value, null),
       description: this.form.controls.motivation.value,

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IDeclaration} from '../../models/IDeclaration';
-import {DECLARATIONS} from '../../mocks/mock-declarations';
 import {StatusEnum} from '../../models/StatusEnum';
 import {AuthenticationService} from '../../../services/authentication/authentication.service';
 import {Role} from '../../../models/role/role.enum';
@@ -18,10 +17,11 @@ import {DeclarationService} from '../../services/declaration.service';
 })
 export class DetailViewComponent implements OnInit {
 
+  comment: string;
   private user: User;
   declaration: IDeclaration;
   disabled = true;
-  selectOptions = [StatusEnum.NONE, StatusEnum.APPROVED, StatusEnum.REJECTED];
+  selectOptions = [StatusEnum.NONE, StatusEnum.APPROVED, StatusEnum.REJECTED_BY_UNIT_MANAGER];
   isManager = false;
 
   // TODO REST DeclarationService
@@ -34,6 +34,7 @@ export class DetailViewComponent implements OnInit {
     const selected = this.activateRouter.snapshot.paramMap.get('id');
     this.decService.getDeclaration(selected).subscribe(dec => {
       console.log(dec.category);
+      dec.statusUpdates = dec.statusUpdates.reverse();
       return this.declaration = dec;
     });
   }
@@ -55,16 +56,27 @@ export class DetailViewComponent implements OnInit {
 
   private updateDeclaration(selected: StatusEnum) {
     if (this.user.role === Role.UNIT_MANAGER) {
-      this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.WAITINGONINDIA : StatusEnum.REJECTED;
+      this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.WAITING_ON_INDIA : StatusEnum.REJECTED_BY_UNIT_MANAGER;
     } else {
-      this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.APPROVED : StatusEnum.REJECTED;
+      this.declaration.status = selected === StatusEnum.APPROVED ? StatusEnum.APPROVED : StatusEnum.REJECTED_BY_INDIA_GUY;
     }
+    console.log(this.user.role);
 
     // TODO onchange save the update and do some succes and error notification!
     // this.declarationService.updateDeclaration(this.declaration).subsribe
 
     // TODO return to list after update!
     // this.backToList();
+    this.decService.updateStatus(this.declaration.id, parseInt(this.declaration.status, null), this.comment)
+      .subscribe(() => this.backToList());
+  }
+
+  approve() {
+    this.updateDeclaration(StatusEnum.APPROVED);
+  }
+
+  deny() {
+    this.updateDeclaration(null);
   }
 
   backToList() {
@@ -74,4 +86,8 @@ export class DetailViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  shouldShowButtons() {
+    console.log(this.user.role);
+    return (this.user.role === Role.UNIT_MANAGER && this.declaration.status === 2) || (this.user.role === Role.INDIA_GUY && this.declaration.status === 3);
+  }
 }

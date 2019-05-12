@@ -1,6 +1,7 @@
 import {StatusEnum} from './StatusEnum';
 import {Category} from './category';
 import {User} from '../../models/user/user.model';
+import {StatusUpdate} from './status.update';
 
 
 export interface IDeclaration {
@@ -12,7 +13,7 @@ export interface IDeclaration {
   chargeCustomer: boolean;
   currency: string;
   status: StatusEnum;
-  statusUpdates: StatusEnum[];
+  statusUpdates: StatusUpdate[];
   category: Category;
   files: any;
   user: User;
@@ -26,7 +27,7 @@ export interface DeclarationArgs {
   categoryId: number;
   date: Date;
   amount: number;
-  foreignCountry: boolean;
+  inForeignCountry: boolean;
   chargeCustomer: boolean;
   currency: string;
   description: string;

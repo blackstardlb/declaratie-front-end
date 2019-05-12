@@ -11,7 +11,7 @@ import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {ApolloLink, FetchResult} from 'apollo-link';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
-import { OverviewListViewComponent } from './components/overview-list-view/overview-list-view.component';
+import {OverviewListViewComponent} from './components/overview-list-view/overview-list-view.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
@@ -24,11 +24,11 @@ import {ConfirmationDialogComponent} from './dialogs/confirmation-dialog/confirm
 import {AuthenticationService} from '../services/authentication/authentication.service';
 import {Observable} from 'zen-observable-ts';
 import {OverviewStatusIndicatorComponent} from './components/overview-status-indicator/overview-status-indicator.component';
-import { StatusUpdateComponent } from './components/status-update/status-update.component';
+import {StatusUpdateComponent} from './components/status-update/status-update.component';
 import {ParkingFieldsComponent} from './components/parking-fields/parking-fields.component';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import {NgxCurrencyModule} from 'ngx-currency';
-import { StatusUpdateDialogComponent } from './dialogs/status-update-dialog/status-update-dialog.component';
+import {StatusUpdateDialogComponent} from './dialogs/status-update-dialog/status-update-dialog.component';
 
 export const customCurrencyMaskConfig = {
   align: 'right',
@@ -36,7 +36,7 @@ export const customCurrencyMaskConfig = {
   allowZero: false,
   decimal: '.',
   precision: 2,
-  prefix: '$ ',
+  prefix: '€ ',
   suffix: '',
   thousands: ',',
   nullable: true
@@ -115,6 +115,17 @@ export class AppModule {
     apollo.create({
       link: authMiddleware.concat(http),
       cache: new InMemoryCache(),
+      defaultOptions: {
+        watchQuery: {
+          fetchPolicy: 'network-only',
+          errorPolicy: 'ignore',
+        },
+        query: {
+          fetchPolicy: 'network-only',
+          errorPolicy: 'all',
+        },
+      }
+
     });
   }
 }

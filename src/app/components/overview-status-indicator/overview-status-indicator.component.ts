@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {statusName} from "../../models/StatusEnum";
 
 @Component({
   selector: 'app-overview-status-indicator',
@@ -20,29 +21,41 @@ export class OverviewStatusIndicatorComponent implements OnInit {
   ngOnInit() {
     switch (this.state) {
       case '1':
-        this.color1 = 'green';
-        this.color2 = 'yellow';
+        this.color1 = 'yellow';
+        this.color2 = '';
         this.color3 = '';
-        this.message = 'Waiting on Unit Manager';
         break;
       case '2':
         this.color1 = 'green';
-        this.color2 = 'green';
-        this.color3 = 'yellow';
-        this.message = 'Waiting on an India response';
+        this.color2 = 'yellow';
+        this.color3 = '';
         break;
       case '3':
         this.color1 = 'green';
         this.color2 = 'green';
+        this.color3 = 'yellow';
+        break;
+      case '4':
+        this.color1 = 'green';
+        this.color2 = 'green';
         this.color3 = 'green';
-        this.message = 'Finished.';
+        break;
+      case '5':
+        this.color1 = 'red';
+        this.color2 = 'red';
+        this.color3 = '';
+        break;
+      case '6':
+        this.color1 = 'red';
+        this.color2 = 'red';
+        this.color3 = 'red';
         break;
       default:
         this.color1 = '';
         this.color2 = '';
         this.color3 = '';
-        this.message = 'None';
     }
+    this.message = statusName(this.state);
   }
 
 }

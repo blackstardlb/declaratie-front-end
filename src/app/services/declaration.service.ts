@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import {map} from 'rxjs/operators';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {DeclarationArgs, IDeclaration} from '../models/IDeclaration';
+import {StatusEnum} from "../models/StatusEnum";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class DeclarationService {
         declarationsForEmployee {
           id,
           category {
+            id,
             name
           },
           status,
@@ -63,6 +65,25 @@ export class DeclarationService {
                                                   createDeclaration(args: $args)
                                                }`);
 
+  private readonly getAllQuery = gql(`query {
+    allDeclarations {
+       id,
+          category {
+            id,
+            name
+          },
+          status,
+          description,
+          date,
+          amount,
+          currency
+    }
+  }`);
+
+  private readonly updateStatusMutation = gql(`mutation($id: String!, $status: Float!, $comment: String) {
+    updateStatus(id: $id, status: $status, comment: $comment)
+  }`);
+
   constructor(
     private readonly apollo: Apollo,
     private authService: AuthenticationService
@@ -73,6 +94,12 @@ export class DeclarationService {
     return this.apollo.watchQuery({
       query: this.getQuery,
     }).valueChanges.pipe(map(({data}) => (data as any).declarationsForEmployee as IDeclaration[]));
+  }
+
+  public getAllDeclarations() {
+    return this.apollo.watchQuery({
+      query: this.getAllQuery
+    }).valueChanges.pipe(map(({data}) => (data as any).allDeclarations as IDeclaration[]));
   }
 
   public getDeclaration(id: string) {
@@ -89,5 +116,25 @@ export class DeclarationService {
         args
       }
     }).pipe(map(({data}) => (data as any).createDeclaration as string));
+  }
+
+  public updateStatus(id: string, status: number, comment?: string) {
+    return this.apollo.mutate({
+      mutation: this.updateStatusMutation,
+      variables: {
+        id,
+        status,
+        comment
+      },
+      /*update: (proxy, result) => {
+        const data = proxy.readQuery({query: this.getAllQuery});
+        (data as IDeclaration[]).forEach(value => {
+          if (value.id === id) {
+            value.status = `${status}` as StatusEnum;
+          }
+        });
+        proxy.writeQuery({query: this.getAllQuery, data});
+      }*/
+    }).pipe(map(({data}) => (data as any).updateStatus as string));
   }
 }
