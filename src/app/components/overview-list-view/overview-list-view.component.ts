@@ -30,7 +30,7 @@ export class OverviewListViewComponent implements OnInit {
   }
 
   createDeclaration() {
-    alert('clicked create button');
+    this.router.navigateByUrl('/create');
   }
 
   openDeclaration(selected: IDeclaration) {
