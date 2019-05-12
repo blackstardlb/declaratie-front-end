@@ -1,14 +1,17 @@
 import {StatusEnum} from './StatusEnum';
+import {Category} from './category';
+import {User} from '../../models/user/user.model';
 
 
 export interface IDeclaration {
-  id: number;
+  id: string;
   description: string;
-  date: string;
+  date: number;
   amount: number;
   currency: string;
   status: StatusEnum;
-  category: any;
+  statusUpdates: StatusEnum[];
+  category: Category;
   files: any;
-  empId: number;
+  user: User;
 }
