@@ -68,6 +68,7 @@ export class CreateComponent implements OnInit {
   }
 
   clearSavedFields() {
+    // test
     Object.keys(this.form.controls).forEach(key => {
       localStorage.removeItem('field_' + key);
     });
