@@ -11,7 +11,8 @@ export class ConfirmationDialogComponent implements OnInit {
 
   private statusOfConfirmation = true;
 
-  constructor(private dialogRef: MatDialogRef<ConfirmationDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: IMessageDialog) { }
+  constructor(private dialogRef: MatDialogRef<ConfirmationDialogComponent>, @Inject(MAT_DIALOG_DATA) readonly data: IMessageDialog) {
+  }
 
   public closeDialog = () => {
     this.dialogRef.close();
