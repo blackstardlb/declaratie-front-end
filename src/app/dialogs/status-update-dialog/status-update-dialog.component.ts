@@ -27,6 +27,7 @@ export class StatusUpdateDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.data.comment);
   }
 
 }

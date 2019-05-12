@@ -35,6 +35,7 @@ export interface DeclarationArgs {
   hotelInfo?: HotelInfo;
   bankAccount: string;
   attachments: string[];
+
 }
 
 export interface ParkingInfo {

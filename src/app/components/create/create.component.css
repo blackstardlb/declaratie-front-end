@@ -1,10 +1,10 @@
 .backButton {
-  padding-bottom: 40px;
+  padding-bottom: 15px;
   display: flex;
   align-items: center;
 }
 
-.createDiv{
+.createDiv {
   margin-top: 40px;
 }
 

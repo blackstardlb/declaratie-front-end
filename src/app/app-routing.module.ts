@@ -10,11 +10,12 @@ import {NoPermissionsComponent} from './components/no-permissions/no-permissions
 import {DetailViewComponent} from './components/detail-view/detail-view.component';
 import {CreateComponent} from './components/create/create.component';
 import {UploadFileComponent} from './components/upload-file/upload-file.component';
+import {EmployeeGuard} from '../guards/employee/employee.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginScreenComponent},
-  {path: 'create', component: CreateComponent, canActivate: [AuthenticatedGuard]},
+  {path: 'create', component: CreateComponent, canActivate: [AuthenticatedGuard, EmployeeGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthenticatedGuard]},
   {path: 'home', redirectTo: '/overview', canActivate: [AuthenticatedGuard]},
   {path: 'no-permissions', component: NoPermissionsComponent, canActivate: [AuthenticatedGuard]},

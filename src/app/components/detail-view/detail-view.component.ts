@@ -33,7 +33,7 @@ export class DetailViewComponent implements OnInit {
     });
     const selected = this.activateRouter.snapshot.paramMap.get('id');
     this.decService.getDeclaration(selected).subscribe(dec => {
-      console.log(dec.category);
+      console.log(dec.statusUpdates);
       dec.statusUpdates = dec.statusUpdates.reverse();
       return this.declaration = dec;
     });
@@ -89,6 +89,7 @@ export class DetailViewComponent implements OnInit {
   shouldShowButtons() {
     console.log(this.user.role);
     // @ts-ignore
-    return (this.user.role === Role.UNIT_MANAGER && this.declaration.status === 2) || (this.user.role === Role.INDIA_GUY && this.declaration.status === 3);
+    // tslint:disable-next-line:max-line-length
+    return (this.user.role === Role.UNIT_MANAGER && this.declaration.status === 2) || (this.user.role === Role.INDIA_GUY && this.declaration.status.toString() === 3);
   }
 }

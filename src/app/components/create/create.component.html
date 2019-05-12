@@ -1,5 +1,9 @@
 <div class="createDiv">
   <mat-card>
+    <div mat-dialog-actions class="backButton" align="left" (click)="backToList()">
+      <i class="material-icons" align="left">arrow_back</i>
+      <div class="buttonBack">Back</div>
+    </div>
     <mat-card-title>Generieke informatie</mat-card-title>
     <mat-card-content>
       <form [formGroup]="form">
