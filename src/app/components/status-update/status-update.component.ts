@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog, MatTableDataSource} from '@angular/material';
-import {StatusEnum} from '../../models/StatusEnum';
-import {ConfirmationDialogComponent} from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
+import {StatusEnum, statusName} from '../../models/StatusEnum';
 import {StatusUpdateDialogComponent} from '../../dialogs/status-update-dialog/status-update-dialog.component';
 
 export interface StatusUpdateInfo {
@@ -29,10 +28,11 @@ export class StatusUpdateComponent implements OnInit {
         comment: value.comment,
         date: new Date(value.date).toISOString(),
         name: value.user.name,
-        status: Object.getOwnPropertyNames(StatusEnum)[value.status]
+        status: statusName(value.status)
       };
       return newObj;
-    }); }
+    });
+  }
 
   constructor(private dialog: MatDialog) {
   }

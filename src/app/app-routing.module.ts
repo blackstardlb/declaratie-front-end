@@ -7,7 +7,6 @@ import {HomeComponent} from './components/home/home.component';
 import {AuthenticatedGuard} from '../guards/authenticated/authenticated.guard';
 import {IndiaGuyGuard} from '../guards/india_guy/india-guy.guard';
 import {NoPermissionsComponent} from './components/no-permissions/no-permissions.component';
-import {EmployeeGuard} from '../guards/employee/employee.guard';
 import {DetailViewComponent} from './components/detail-view/detail-view.component';
 import {CreateComponent} from './components/create/create.component';
 import {UploadFileComponent} from './components/upload-file/upload-file.component';
@@ -21,8 +20,8 @@ const routes: Routes = [
   {path: 'no-permissions', component: NoPermissionsComponent, canActivate: [AuthenticatedGuard]},
   {path: 'india-guy-only', component: HomeComponent, canActivate: [IndiaGuyGuard]},
   {path: 'login', component: LoginScreenComponent, canActivate: [NotAuthenticatedGuard]},
-  { path: 'overview', component: OverviewListViewComponent, canActivate: [AuthenticatedGuard, EmployeeGuard]},
-  { path: 'view/:id', component: DetailViewComponent, canActivate: [AuthenticatedGuard, EmployeeGuard]},
+  { path: 'overview', component: OverviewListViewComponent, canActivate: [AuthenticatedGuard]},
+  { path: 'view/:id', component: DetailViewComponent, canActivate: [AuthenticatedGuard]},
   { path: 'uploadfile', component: UploadFileComponent},
 ];
 

@@ -1,10 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CategoryService} from '../../services/category.service';
 import {Observable} from 'rxjs';
 import {Category} from '../../models/category';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication/authentication.service';
 import {FileUploadService} from '../../services/file-upload.service';
+import {ParkingFieldsComponent} from '../parking-fields/parking-fields.component';
+import {DeclarationArgs} from '../../models/IDeclaration';
+import {DeclarationService} from '../../services/declaration.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -15,12 +19,15 @@ export class CreateComponent implements OnInit {
   form: FormGroup;
   categories: Observable<Category[]>;
   files: File[];
+  @ViewChild('parkingFields') parkingFields: ParkingFieldsComponent;
 
   constructor(
     readonly categoryService: CategoryService,
     readonly authService: AuthenticationService,
     formBuilder: FormBuilder,
     readonly fileService: FileUploadService,
+    readonly declarationService: DeclarationService,
+    readonly router: Router,
   ) {
     this.form = formBuilder.group({
       category: new FormControl('', Validators.required),
@@ -70,7 +77,32 @@ export class CreateComponent implements OnInit {
 
   onNewFiles(files: File[]) {
     this.files = files;
-    console.log(files);
-    this.fileService.uploadFiles(this.files).then(urls => console.log(urls));
+  }
+
+  save() {
+    const parkingModel = this.parkingFields.getModel();
+    this.fileService.uploadFiles(this.files).then(urls => {
+      const declarationModel: DeclarationArgs = {
+        date: new Date(),
+        inForeignCountry: this.form.controls.abroad.value === 'true',
+        chargeCustomer: this.form.controls.chargeCustomer.value === 'true',
+        categoryId: parseInt(this.form.controls.category.value, null),
+        description: this.form.controls.motivation.value,
+        currency: '€',
+        amount: parkingModel.rows.map(value => value.amount).reduce((previousValue, currentValue) => previousValue + currentValue),
+        parkingInfo: parkingModel,
+        bankAccount: this.form.controls.bank.value,
+        attachments: urls,
+      };
+      this.declarationService.createDeclaration(declarationModel).subscribe(value => {
+        this.clearSavedFields();
+        this.parkingFields.removeSavedChanges();
+        this.router.navigateByUrl('/overview');
+      });
+    });
+  }
+
+  valid() {
+    return this.form && this.form.valid && this.parkingFields && this.parkingFields.valid();
   }
 }

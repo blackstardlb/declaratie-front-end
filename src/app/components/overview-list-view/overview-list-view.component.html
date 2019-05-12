@@ -1,6 +1,6 @@
 <div class="declarationTable">
 
-  <div mat-dialog-actions class="createDiv" align="end">
+  <div mat-dialog-actions class="createDiv" align="end" *ngIf="!isManager">
     <button mat-raised-button align="end" class="createbutton" (click)="createDeclaration()">+Start new declaration
     </button>
   </div>

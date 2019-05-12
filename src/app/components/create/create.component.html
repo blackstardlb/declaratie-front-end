@@ -44,7 +44,7 @@
   <mat-card>
     <mat-card-title>Parkeerdeclaratie informatie</mat-card-title>
     <mat-card-content>
-      <app-parking-fields>
+      <app-parking-fields #parkingFields>
       </app-parking-fields>
     </mat-card-content>
   </mat-card>
@@ -61,3 +61,9 @@
     <app-upload-file (valueChange)="onNewFiles($event)"></app-upload-file>
   </mat-card-content>
 </mat-card>
+
+<div class="center-wrapper">
+  <div class="grow"></div>
+  <button (click)="save()" class="submit-button" mat-flat-button color="primary" [disabled]="!valid()">Declaratie versturen</button>
+  <div class="grow"></div>
+</div>
