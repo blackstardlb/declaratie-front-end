@@ -21,7 +21,6 @@ export class CreateComponent implements OnInit {
   @ViewChild('parkingFields') parkingFields: ParkingFieldsComponent;
 
   constructor(
-    private router: Router,
     readonly categoryService: CategoryService,
     readonly authService: AuthenticationService,
     readonly declarationService: DeclarationService,
@@ -75,9 +74,9 @@ export class CreateComponent implements OnInit {
   }
 
   backToList() {
-    this.router.navigateByUrl('overview');
+    this.router.navigateByUrl('/overview');
   }
-  
+
   save() {
     const parkingModel = this.parkingFields.getModel();
     const declarationModel: DeclarationArgs = {
@@ -94,7 +93,7 @@ export class CreateComponent implements OnInit {
     this.declarationService.createDeclaration(declarationModel).subscribe(value => {
       this.clearSavedFields();
       this.parkingFields.removeSavedChanges();
-      this.router.navigateByUrl('/overview');
+      this.backtoList();
     });
   }
 

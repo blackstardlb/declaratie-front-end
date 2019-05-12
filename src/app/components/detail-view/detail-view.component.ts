@@ -88,6 +88,7 @@ export class DetailViewComponent implements OnInit {
 
   shouldShowButtons() {
     console.log(this.user.role);
-    return (this.user.role === Role.UNIT_MANAGER && this.declaration.status === 2) || (this.user.role === Role.INDIA_GUY && this.declaration.status === 3);
+    return (this.user.role === Role.UNIT_MANAGER && this.declaration.status === 2) ||
+      (this.user.role === Role.INDIA_GUY && this.declaration.status === 3);
   }
 }

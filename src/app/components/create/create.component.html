@@ -1,53 +1,5 @@
-
 <div class="createDiv">
-<mat-card>
-  <mat-card-title>Generieke informatie</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="form">
-      <mat-form-field>
-        <mat-label>Categorie</mat-label>
-        <mat-select formControlName="category">
-          <mat-option>None</mat-option>
-          <mat-option *ngFor="let category of categories | async" [value]="category.id">{{category.name}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.controls?.category?.errors?.required">You must select a category</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Bank/girorekening</mat-label>
-        <input matInput formControlName="bank"/>
-        <mat-error *ngIf="form.controls?.bank?.errors?.pattern">Geen geldig rekening nummer</mat-error>
-      </mat-form-field>
-      <mat-form-field floatLabel="always" class="mat-form-field--no-underline">
-        <mat-label>Kosten gemaakt in buitenland?</mat-label>
-        <input matInput placeholder="Input" style="display: none">
-        <mat-radio-group formControlName="abroad">
-          <mat-radio-button value="true">Ja</mat-radio-button>
-          <mat-radio-button value="false">Nee</mat-radio-button>
-        </mat-radio-group>
-      </mat-form-field>
-      <mat-form-field floatLabel="always" class="mat-form-field--no-underline">
-        <mat-label>Doorbelasten klant?</mat-label>
-        <input matInput placeholder="Input" style="display: none">
-        <mat-radio-group formControlName="chargeCustomer">
-          <mat-radio-button value="true">Ja</mat-radio-button>
-          <mat-radio-button value="false">Nee</mat-radio-button>
-        </mat-radio-group>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Motivatie</mat-label>
-        <textarea formControlName="motivation" matInput></textarea>
-        <mat-error *ngIf="form.controls?.motivation?.errors?.required">Je moet een motivatie geven</mat-error>
-      </mat-form-field>
-    </form>
-  </mat-card-content>
-</mat-card>
-
-<ng-container *ngIf="form.controls?.category?.value === '2'">
   <mat-card>
-    <div mat-dialog-actions class="backButton" align="left" (click)="backToList()">
-      <i class="material-icons" align="left">arrow_back</i>
-      <div class="buttonBack">Back</div>
-    </div>
     <mat-card-title>Generieke informatie</mat-card-title>
     <mat-card-content>
       <form [formGroup]="form">
@@ -86,12 +38,10 @@
           <mat-error *ngIf="form.controls?.motivation?.errors?.required">Je moet een motivatie geven</mat-error>
         </mat-form-field>
       </form>
-      <app-parking-fields #parkingFields>
-      </app-parking-fields>
     </mat-card-content>
   </mat-card>
 
-  <ng-container *ngIf="form.controls?.category?.value === '19'">
+  <ng-container *ngIf="form.controls?.category?.value === '2'">
     <mat-card>
       <mat-card-title>Parkeerdeclaratie informatie</mat-card-title>
       <mat-card-content>
@@ -111,12 +61,12 @@
       </div>
     </mat-card-content>
   </mat-card>
-    </div>
-  </mat-card-content>
-</mat-card>
 
-<div class="center-wrapper">
-  <div class="grow"></div>
-  <button (click)="save()" class="submit-button" mat-flat-button color="primary" [disabled]="!valid()">Declaratie versturen</button>
-  <div class="grow"></div>
+  <div class="center-wrapper">
+    <div class="grow"></div>
+    <button (click)="save()" class="submit-button" mat-flat-button color="primary" [disabled]="!valid()">Declaratie
+      versturen
+    </button>
+    <div class="grow"></div>
+  </div>
 </div>
