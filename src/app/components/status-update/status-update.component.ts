@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {MatDialog, MatTableDataSource} from '@angular/material';
 import {StatusEnum} from '../../models/StatusEnum';
+import {ConfirmationDialogComponent} from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
+import {StatusUpdateDialogComponent} from '../../dialogs/status-update-dialog/status-update-dialog.component';
 
 export interface StatusUpdateInfo {
   comment: any;
@@ -18,7 +20,7 @@ export interface StatusUpdateInfo {
 export class StatusUpdateComponent implements OnInit {
 
   statusUpdateTable = new MatTableDataSource<StatusEnum>();
-  displayedColumns = ['comment', 'date', 'status', 'name'];
+  displayedColumns = ['date', 'status', 'name'];
 
   @Input() set statusUpdate(statusUpdateHist) {
 
@@ -32,7 +34,11 @@ export class StatusUpdateComponent implements OnInit {
       return newObj;
     }); }
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
+  }
+
+  showDetails(selected: StatusUpdateInfo) {
+    this.dialog.open(StatusUpdateDialogComponent, {data: selected, disableClose: true});
   }
 
   ngOnInit() {

@@ -28,6 +28,7 @@ import { StatusUpdateComponent } from './components/status-update/status-update.
 import {ParkingFieldsComponent} from './components/parking-fields/parking-fields.component';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import {NgxCurrencyModule} from 'ngx-currency';
+import { StatusUpdateDialogComponent } from './dialogs/status-update-dialog/status-update-dialog.component';
 
 export const customCurrencyMaskConfig = {
   align: 'right',
@@ -54,7 +55,8 @@ export const customCurrencyMaskConfig = {
     ConfirmationDialogComponent,
     OverviewStatusIndicatorComponent,
     StatusUpdateComponent,
-    ParkingFieldsComponent
+    ParkingFieldsComponent,
+    StatusUpdateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,7 @@ export const customCurrencyMaskConfig = {
     {provide: 'API_URL', useValue: environment.apiUrl},
     {provide: MAT_DATE_LOCALE, useValue: 'nl-NL'},
   ],
-  entryComponents: [DetailViewComponent, ConfirmationDialogComponent],
+  entryComponents: [DetailViewComponent, ConfirmationDialogComponent, StatusUpdateDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

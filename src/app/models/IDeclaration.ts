@@ -8,6 +8,8 @@ export interface IDeclaration {
   description: string;
   date: number;
   amount: number;
+  inForeignCountry: boolean;
+  chargeCustomer: boolean;
   currency: string;
   status: StatusEnum;
   statusUpdates: StatusEnum[];
