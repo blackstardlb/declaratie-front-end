@@ -19,7 +19,7 @@ export class AuthenticationService {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges().pipe(map(mappedUser => {
           mappedUser.id = user.uid;
           mappedUser.emailAddress = user.email;
-          mappedUser.role = Role[mappedUser.role.toString()];
+          mappedUser.role = mappedUser.role.toString() as Role;
           return (this.currentUser = mappedUser);
         }));
       } else {

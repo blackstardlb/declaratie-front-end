@@ -11,18 +11,18 @@ export const DECLARATIONS: IDeclaration[] = [
 //     status: StatusEnum.INPROGRESS, category: 'parking', files: [], bankNum: 'NL29ING0DONTHACKMELOLZ'}
 // =======
 //   { id: 0, description: 'Gasoline', currency: "$", amount: 120, date: new Date().toISOString(),
-//     empId: 1, status: StatusEnum.WAITINGONUNITMANAGER, category: 'hotel', files: []},
+//     empId: 1, status: StatusEnum.WAITING_ON_UNIT_MANAGER, category: 'hotel', files: []},
 
 //   { id: 1, description: 'Food for good', currency: "€", amount: 10, date: '1-1-2019', empId: 1,
-//     status: StatusEnum.WAITINGONINDIA, category: 'parking', files: []}
+//     status: StatusEnum.WAITING_ON_INDIA, category: 'parking', files: []}
 // >>>>>>> master
   // {
   //   id: 0, description: 'Gasoline', currency: '$', amount: 120, date: new Date().getTime(),
-  //   empId: 1, status: StatusEnum.WAITINGONUNITMANAGER, category: 'hotel', files: []
+  //   empId: 1, status: StatusEnum.WAITING_ON_UNIT_MANAGER, category: 'hotel', files: []
   // },
   //
   // {
   //   id: 1, description: 'Food for good', currency: '€', amount: 10, date: '1-1-2019', empId: 1,
-  //   status: StatusEnum.WAITINGONINDIA, category: 'parking', files: []
+  //   status: StatusEnum.WAITING_ON_INDIA, category: 'parking', files: []
   // }
 ];

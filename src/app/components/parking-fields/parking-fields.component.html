@@ -16,7 +16,7 @@
       <input formControlName="date" matInput [matDatepickerFilter]="noFutureDateFilter" [matDatepicker]="picker"
              disabled="true">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker disabled="false"></mat-datepicker>
+      <mat-datepicker #picker [disabled]="disabled"></mat-datepicker>
       <mat-error *ngIf="row.form?.controls?.date?.errors?.required">Je moet een datum invullen</mat-error>
     </mat-form-field>
     <mat-form-field class="day">
@@ -25,21 +25,21 @@
     </mat-form-field>
     <mat-form-field class="grow">
       <mat-label>Omschrijving</mat-label>
-      <input matInput formControlName="description"/>
+      <input [disabled]="disabled" matInput formControlName="description"/>
       <mat-error *ngIf="row.form?.controls?.description?.errors?.required">Je moet een beschrijving geven</mat-error>
     </mat-form-field>
     <mat-form-field class="money">
       <mat-label>Gedecl. bedrag</mat-label>
-      <input matInput currencyMask formControlName="money"/>
+      <input [disabled]="disabled" matInput currencyMask formControlName="money"/>
       <mat-error *ngIf="row.form?.controls?.money?.errors?.required">Je moet een bedrag invullen</mat-error>
     </mat-form-field>
-    <button mat-icon-button color="primary" *ngIf="parkingRows.length > 1" (click)="removeRow(row)">
+    <button mat-icon-button color="primary" *ngIf="parkingRows.length > 1 && !disabled" (click)="removeRow(row)">
       <mat-icon>close</mat-icon>
     </button>
   </form>
 </div>
 <div class="row-actions">
-  <button mat-flat-button color="primary" (click)="addRow()">Nieuwe rij</button>
+  <button *ngIf="!disabled" mat-flat-button color="primary" (click)="addRow()">Nieuwe rij</button>
   <div class="spacer"></div>
   <mat-form-field class="money" floatLabel="always">
     <mat-label>Totaal bedrag</mat-label>

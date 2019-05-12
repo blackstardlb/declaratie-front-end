@@ -41,6 +41,11 @@
         <textarea matInput [ngModel]="declaration.description" placeholder="Input" [disabled]="disabled"></textarea>
       </mat-form-field>
 
+      <ng-container *ngIf="declaration.category?.id.toString() === '2'">
+        <app-parking-fields [model]="declaration.parkingInfo" [disabled]="true">
+        </app-parking-fields>
+      </ng-container>
+
       <mat-form-field appearance="outline">
         <mat-label>Files:</mat-label>
         <input matInput [ngModel]="declaration.files" placeholder="Input" [disabled]="disabled">
@@ -48,15 +53,24 @@
 
       <app-status-update [statusUpdate]="declaration.statusUpdates"></app-status-update>
 
-      <ng-container *ngIf="isManager">
-        <mat-form-field>
-          <mat-label>Approve</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let status of selectOptions" (click)="onChange(status)" [value]="status">
-              {{status}}
-            </mat-option>
-          </mat-select>
+      <ng-container *ngIf="shouldShowButtons()">
+        <!-- <mat-form-field>
+           <mat-label>Approve</mat-label>
+           <mat-select>
+             <mat-option *ngFor="let status of selectOptions" (click)="onChange(status)" [value]="status">
+               {{status}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>-->
+
+        <mat-form-field class="comment" floatLabel="always" appearance="outline">
+          <mat-label>Comment:</mat-label>
+          <textarea [(ngModel)]="comment" matInput></textarea>
         </mat-form-field>
+        <div class="buttons">
+          <button (click)="approve()" class="approve" mat-raised-button>Approve</button>
+          <button (click)="deny()" class="deny" mat-raised-button>Deny</button>
+        </div>
       </ng-container>
 
 <!--      <div mat-dialog-actions class="backButton" align="left">-->
