@@ -79,6 +79,10 @@ export class CreateComponent implements OnInit {
     this.files = files;
   }
 
+  backToList() {
+    this.router.navigateByUrl('/overview');
+  }
+
   save() {
     const parkingModel = this.parkingFields.getModel();
     this.fileService.uploadFiles(this.files).then(urls => {
@@ -97,7 +101,7 @@ export class CreateComponent implements OnInit {
       this.declarationService.createDeclaration(declarationModel).subscribe(value => {
         this.clearSavedFields();
         this.parkingFields.removeSavedChanges();
-        this.router.navigateByUrl('/overview');
+        this.backToList();
       });
     });
   }

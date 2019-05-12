@@ -16,13 +16,13 @@ const routes: Routes = [
   {path: 'login', component: LoginScreenComponent},
   {path: 'create', component: CreateComponent, canActivate: [AuthenticatedGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthenticatedGuard]},
-  {path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard]},
+  {path: 'home', redirectTo: '/overview', canActivate: [AuthenticatedGuard]},
   {path: 'no-permissions', component: NoPermissionsComponent, canActivate: [AuthenticatedGuard]},
   {path: 'india-guy-only', component: HomeComponent, canActivate: [IndiaGuyGuard]},
   {path: 'login', component: LoginScreenComponent, canActivate: [NotAuthenticatedGuard]},
-  { path: 'overview', component: OverviewListViewComponent, canActivate: [AuthenticatedGuard]},
-  { path: 'view/:id', component: DetailViewComponent, canActivate: [AuthenticatedGuard]},
-  { path: 'uploadfile', component: UploadFileComponent},
+  {path: 'overview', component: OverviewListViewComponent, canActivate: [AuthenticatedGuard]},
+  {path: 'view/:id', component: DetailViewComponent, canActivate: [AuthenticatedGuard]},
+  {path: 'uploadfile', component: UploadFileComponent},
 ];
 
 @NgModule({

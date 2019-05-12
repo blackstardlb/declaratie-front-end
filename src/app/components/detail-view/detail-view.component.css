@@ -20,6 +20,7 @@
 }
 
 .detailDiv {
+  margin-top: 40px;
   /*width: 50%;*/
   /*justify-content: center;*/
   display: flex;
@@ -27,7 +28,9 @@
 }
 
 .backButton {
-  margin-bottom: 20px;
+  padding-bottom: 40px;
+  display: flex;
+  align-items: center;
 }
 
 /deep/ .mat-form-field--no-underline .mat-form-field-underline {
