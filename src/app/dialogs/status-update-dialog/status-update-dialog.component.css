@@ -1,0 +1,14 @@
+.declaration-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+.myClose:hover{
+  color:red;
+}
