@@ -20,6 +20,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   onFileSelect(event: any) {
+    // TEST
     if (event.target.files.length > 0) {
       this.procesSelectedFiles(event.target.files);
     }
