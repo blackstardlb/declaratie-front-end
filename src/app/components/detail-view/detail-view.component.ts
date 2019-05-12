@@ -32,7 +32,10 @@ export class DetailViewComponent implements OnInit {
       this.user = value;
     });
     const selected = this.activateRouter.snapshot.paramMap.get('id');
-    this.decService.getDeclaration(selected).subscribe(dec => this.declaration = dec);
+    this.decService.getDeclaration(selected).subscribe(dec => {
+      console.log(dec.category);
+      return this.declaration = dec;
+    });
   }
 
   onChange(selected: StatusEnum) {

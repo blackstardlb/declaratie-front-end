@@ -1,4 +1,12 @@
-.tableDiv{
+/deep/ .mat-input-element:disabled {
+  color: black !important;
+}
+
+/deep/ .mat-form-field-label {
+  color: black !important;
+}
+
+.tableDiv {
   width: 100%;
 }
 

@@ -28,6 +28,7 @@ export class DeclarationService {
         declaration(id: $id) {
           id,
           category {
+            id,
             name
           },
           user {
@@ -40,6 +41,13 @@ export class DeclarationService {
             status,
             user {
               name
+            }
+          },
+          parkingInfo {
+            rows {
+              date,
+              amount,
+              description
             }
           },
           description,

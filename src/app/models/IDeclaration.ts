@@ -17,6 +17,8 @@ export interface IDeclaration {
   files: any;
   user: User;
   bankAccount: string;
+  parkingInfo?: ParkingInfo;
+  hotelInfo?: HotelInfo;
 }
 
 export interface DeclarationArgs {

@@ -37,6 +37,11 @@
         <textarea matInput [ngModel]="declaration.description" placeholder="Input" [disabled]="disabled"></textarea>
       </mat-form-field>
 
+      <ng-container *ngIf="declaration.category?.id.toString() === '2'">
+        <app-parking-fields [model]="declaration.parkingInfo" [disabled]="true">
+        </app-parking-fields>
+      </ng-container>
+
       <mat-form-field appearance="outline">
         <mat-label>Files:</mat-label>
         <input matInput [ngModel]="declaration.files" placeholder="Input" [disabled]="disabled">
