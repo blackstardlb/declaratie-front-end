@@ -29,6 +29,8 @@ import {ParkingFieldsComponent} from './components/parking-fields/parking-fields
 import {MAT_DATE_LOCALE} from '@angular/material';
 import {NgxCurrencyModule} from 'ngx-currency';
 import { StatusUpdateDialogComponent } from './dialogs/status-update-dialog/status-update-dialog.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { FileViewComponent } from './components/file-view/file-view.component';
 
 export const customCurrencyMaskConfig = {
   align: 'right',
@@ -56,7 +58,9 @@ export const customCurrencyMaskConfig = {
     OverviewStatusIndicatorComponent,
     StatusUpdateComponent,
     ParkingFieldsComponent,
-    StatusUpdateDialogComponent
+    StatusUpdateDialogComponent,
+    UploadFileComponent,
+    FileViewComponent
   ],
   imports: [
     BrowserModule,
